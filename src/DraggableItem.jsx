@@ -8,11 +8,11 @@ const Container = styled.div`
   min-width: 50%;
 `;
 
-const Item = ({ onClick, name, type }) => (
+const DraggableItem = ({ onClick, name, type }) => (
   <Container>
-    <Icon type="plus" onClick={onClick} style={{ margin: 10 }} />
+    <Icon type="remove" onClick={onClick} style={{ margin: 10 }} />
     {`[${type.toUpperCase()}] - ${name}`}
   </Container>
 );
 
-export default Item;
+export default DraggableItem;

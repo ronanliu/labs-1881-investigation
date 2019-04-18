@@ -1,6 +1,7 @@
 import { Button, Modal } from "antd";
 import "antd/dist/antd.css";
 import React, { Component } from "react";
+import Dropzone from "./Dropzone";
 import List from "./List";
 
 class App extends Component {
@@ -13,7 +14,7 @@ class App extends Component {
 
   render() {
     return (
-      <div style={{ margin: 50 }}>
+      <div style={{ padding: 50 }}>
         <Button onClick={this.handleBtnClick}>Open Modal</Button>
         <Modal
           visible={this.state.visible}
@@ -22,6 +23,7 @@ class App extends Component {
           title="Client dashboard settings"
         >
           <List />
+          <Dropzone />
         </Modal>
       </div>
     );
