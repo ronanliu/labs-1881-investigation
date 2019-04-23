@@ -1,15 +1,23 @@
-import React from "react";
 import Icon from "antd/lib/icon";
-import styled from "styled-components";
+import Input from "antd/lib/input";
+import React from "react";
 import { Draggable } from "react-beautiful-dnd";
+import styled from "styled-components";
 
 const Container = styled.div`
   line-height: 25px;
   background-color: #fff;
+  display: flex;
+  align-items: center;
+  padding-right: 10px;
 
   &:hover {
     background: #ccc;
   }
+`;
+
+const Name = styled.div`
+  width: 100%;
 `;
 
 const DraggableItem = ({ id, index, name, onDeleteClick, type }) => (
@@ -25,7 +33,12 @@ const DraggableItem = ({ id, index, name, onDeleteClick, type }) => (
           onClick={onDeleteClick}
           style={{ color: "red", margin: 10 }}
         />
-        {`[${type.toUpperCase()}] - ${name}`}
+        <Name>{`[${type.toUpperCase()}] - ${name}`}</Name>
+        <Input
+          style={{ flexGrow: 1 }}
+          placeholder="enter additional information"
+          size="small"
+        />
       </Container>
     )}
   </Draggable>
