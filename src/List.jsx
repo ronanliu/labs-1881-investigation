@@ -1,7 +1,10 @@
 import React, { Component } from "react";
-import { fields } from "./data";
-import Item from "./Item";
+import { connect } from "react-redux";
 import styled from "styled-components";
+import { addToZone } from "./flow/actions";
+import Item from "./Item";
+
+const selectionLimit = 5;
 
 const Container = styled.div`
   display: flex;
@@ -9,7 +12,13 @@ const Container = styled.div`
 `;
 class List extends Component {
   handleIconClick = fieldId => {
-    console.log("clicked" + fieldId);
+    const { selectedFields, addToZone } = this.props;
+    if (
+      selectedFields.indexOf(fieldId) < 0 &&
+      selectedFields.length < selectionLimit
+    ) {
+      addToZone(fieldId);
+    }
   };
 
   render() {
@@ -17,7 +26,7 @@ class List extends Component {
       <div>
         <h2>Fields</h2>
         <Container>
-          {fields.map(({ id, name, type }) => (
+          {this.props.fields.map(({ id, name, type }) => (
             <Item
               key={id}
               id={id}
@@ -32,4 +41,14 @@ class List extends Component {
   }
 }
 
-export default List;
+const mapState = ({ fields, selectedFields }) => ({
+  fields,
+  selectedFields
+});
+const mapDispatch = {
+  addToZone
+};
+export default connect(
+  mapState,
+  mapDispatch
+)(List);
